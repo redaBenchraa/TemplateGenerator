@@ -23,4 +23,8 @@ public class Website {
     private Collection<Service> services= new ArrayList<Service>();
     @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
     private Collection<Link> links= new ArrayList<Link>();
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }
