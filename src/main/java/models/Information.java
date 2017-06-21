@@ -23,7 +23,8 @@ public class Information {
     String logo;
     @Column
     String name;
-    @OneToOne(mappedBy="Information")
+
+    @OneToOne(mappedBy="information")
     private Website website;
 
     public int getId() {

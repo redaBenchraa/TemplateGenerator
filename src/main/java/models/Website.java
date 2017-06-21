@@ -15,6 +15,23 @@ public class Website {
     @Column
     String name;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="INFORMATION_ID")
+    private Information information;
+
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
+    private Collection<Project> projects= new ArrayList<Project>();
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
+    private Collection<Service> services= new ArrayList<Service>();
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
+    private Collection<Link> links= new ArrayList<Link>();
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+
+
     public int getId() {
         return id;
     }
@@ -70,20 +87,6 @@ public class Website {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @OneToOne(mappedBy="website")
-    private Information information;
-
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
-    private Collection<Project> projects= new ArrayList<Project>();
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
-    private Collection<Service> services= new ArrayList<Service>();
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
-    private Collection<Link> links= new ArrayList<Link>();
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "USER_ID")
-    private User user;
 
     public Website(int id, String name) {
         this.id = id;
