@@ -81,4 +81,7 @@ public class Project {
         this.about = about;
         this.website = website;
     }
+    public Project(){
+
+    }
 }

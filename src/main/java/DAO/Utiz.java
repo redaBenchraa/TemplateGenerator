@@ -1,4 +1,4 @@
-package test; /**
+package DAO; /**
  * Created by reda-benchraa on 11/05/17.
  */
 /**

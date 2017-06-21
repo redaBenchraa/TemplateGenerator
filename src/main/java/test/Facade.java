@@ -1,5 +1,6 @@
 package test;
 
+import DAO.Utiz;
 import models.User;
 import models.Website;
 import org.hibernate.Session;

@@ -81,4 +81,7 @@ public class Link {
         this.link = link;
         this.website = website;
     }
+    public Link(){
+
+    }
 }

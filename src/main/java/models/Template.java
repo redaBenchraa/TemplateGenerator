@@ -51,4 +51,7 @@ public class Template {
         this.name = name;
         this.link = link;
     }
+    public Template(){
+
+    }
 }

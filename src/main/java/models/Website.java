@@ -117,4 +117,7 @@ public class Website {
         this.links = links;
         this.user = user;
     }
+    public Website(){
+
+    }
 }

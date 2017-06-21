@@ -81,4 +81,7 @@ public class Service {
         this.about = about;
         this.website = website;
     }
+    public Service(){
+
+    }
 }

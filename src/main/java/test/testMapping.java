@@ -1,5 +1,7 @@
 package test;
 
+import DAO.Utiz;
+import DAO.userDAO;
 import models.User;
 
 /**
@@ -7,11 +9,11 @@ import models.User;
  */
 public class testMapping {
     public static void main(String[]args){
-        Facade facade = new Facade();
         try {
-            facade.addUser(new User("reda","ben",null));
-        }catch (Exception e){
+            System.out.println("user : "+new userDAO().getUsers().size());
 
+        }catch (Exception e){
+            e.printStackTrace();
         }finally {
             Utiz.shutdown();
         }

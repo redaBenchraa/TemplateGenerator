@@ -110,4 +110,7 @@ public class Information {
         this.name = name;
         this.website = website;
     }
+    public Information(){
+
+    }
 }
