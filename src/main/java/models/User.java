@@ -16,7 +16,7 @@ public class User {
     String username;
     @Column
     String password;
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="user")
     private Collection<Website> websites= new ArrayList<Website>();
 
     public int getId() {
