@@ -10,8 +10,7 @@ import models.User;
 public class testMapping {
     public static void main(String[]args){
         try {
-            System.out.println("user : "+new userDAO().getUsers().size());
-
+            new userDAO().adduser(new User("reda","ben"));
         }catch (Exception e){
             e.printStackTrace();
         }finally {

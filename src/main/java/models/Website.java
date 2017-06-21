@@ -10,6 +10,7 @@ import java.util.Collection;
 @Entity
 public class Website {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
     int id;
     @Column

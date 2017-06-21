@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Link {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
     int id;
     @Column

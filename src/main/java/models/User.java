@@ -10,6 +10,7 @@ import java.util.Collection;
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
     int id;
     @Column
@@ -66,6 +67,10 @@ public class User {
 
     public User(int id, String username, String password) {
         this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

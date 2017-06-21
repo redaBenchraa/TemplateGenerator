@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Project {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
     int id;
     @Column

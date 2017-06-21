@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by reda-benchraa on 21/06/17.
@@ -11,6 +8,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Information {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
     int id;
     @Column
