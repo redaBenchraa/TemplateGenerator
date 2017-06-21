@@ -1,0 +1,35 @@
+/**
+ * Created by reda-benchraa on 11/05/17.
+ */
+/**
+ * Created by reda-benchraa on 13/04/17.
+ */
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class Utils {
+
+    private static final SessionFactory sessionFactory = buildSessionFactory();
+
+    private static SessionFactory buildSessionFactory() {
+        try {
+            // Crée une unique instance de la SessionFactory à partir de
+            Configuration configuration = new Configuration().configure("temGen.cfg.xml");
+            return configuration.buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Problème de configuration : " + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+    // Renvoie une session Hibernate
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void shutdown() {
+        // Close caches and connection pools
+        getSessionFactory().close();
+    }
+
+}
