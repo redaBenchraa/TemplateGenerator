@@ -13,16 +13,14 @@ public class Website {
     int id;
     @Column
     String name;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "TEMPLATE_ID")
-    private Template template;
-    @OneToOne(mappedBy="information")
+
+    @OneToOne(mappedBy="website")
     private Information information;
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="project")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
     private Collection<Project> projects= new ArrayList<Project>();
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="service")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
     private Collection<Service> services= new ArrayList<Service>();
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="link")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
     private Collection<Link> links= new ArrayList<Link>();
 }

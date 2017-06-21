@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Created by reda-benchraa on 21/06/17.
@@ -20,4 +21,6 @@ public class Information {
     String logo;
     @Column
     String name;
+    @OneToOne(mappedBy="Information")
+    private Website website;
 }
