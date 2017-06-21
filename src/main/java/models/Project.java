@@ -1,13 +1,11 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by reda-benchraa on 21/06/17.
  */
+@Entity
 public class Project {
     @Id
     @Column
@@ -21,4 +19,44 @@ public class Project {
     @ManyToOne(optional = false)
     @JoinColumn(name = "WEBSITE_ID")
     private Website website;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public Website getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(Website website) {
+        this.website = website;
+    }
 }
