@@ -59,4 +59,26 @@ public class Link {
     public void setWebsite(Website website) {
         this.website = website;
     }
+
+    public Link(int id, String name, String image, String link, Website website) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.link = link;
+        this.website = website;
+    }
+
+    public Link(int id, String name, String image, String link) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.link = link;
+    }
+
+    public Link(String name, String image, String link, Website website) {
+        this.name = name;
+        this.image = image;
+        this.link = link;
+        this.website = website;
+    }
 }

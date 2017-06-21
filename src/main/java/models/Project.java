@@ -59,4 +59,26 @@ public class Project {
     public void setWebsite(Website website) {
         this.website = website;
     }
+
+    public Project(int id, String name, String image, String about, Website website) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.about = about;
+        this.website = website;
+    }
+
+    public Project(int id, String name, String image, String about) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.about = about;
+    }
+
+    public Project(String name, String image, String about, Website website) {
+        this.name = name;
+        this.image = image;
+        this.about = about;
+        this.website = website;
+    }
 }

@@ -40,4 +40,15 @@ public class Template {
     public void setLink(String link) {
         this.link = link;
     }
+
+    public Template(int id, String name, String link) {
+        this.id = id;
+        this.name = name;
+        this.link = link;
+    }
+
+    public Template(String name, String link) {
+        this.name = name;
+        this.link = link;
+    }
 }

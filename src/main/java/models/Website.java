@@ -84,4 +84,34 @@ public class Website {
     @ManyToOne(optional = false)
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    public Website(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Website(int id, String name, User user) {
+        this.id = id;
+        this.name = name;
+        this.user = user;
+    }
+
+    public Website(int id, String name, Information information, Collection<Project> projects, Collection<Service> services, Collection<Link> links, User user) {
+        this.id = id;
+        this.name = name;
+        this.information = information;
+        this.projects = projects;
+        this.services = services;
+        this.links = links;
+        this.user = user;
+    }
+
+    public Website(String name, Information information, Collection<Project> projects, Collection<Service> services, Collection<Link> links, User user) {
+        this.name = name;
+        this.information = information;
+        this.projects = projects;
+        this.services = services;
+        this.links = links;
+        this.user = user;
+    }
 }

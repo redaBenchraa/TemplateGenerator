@@ -59,4 +59,26 @@ public class Service {
     public void setWebsite(Website website) {
         this.website = website;
     }
+
+    public Service(int id, String name, String image, String about, Website website) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.about = about;
+        this.website = website;
+    }
+
+    public Service(int id, String name, String image, String about) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.about = about;
+    }
+
+    public Service(String name, String image, String about, Website website) {
+        this.name = name;
+        this.image = image;
+        this.about = about;
+        this.website = website;
+    }
 }

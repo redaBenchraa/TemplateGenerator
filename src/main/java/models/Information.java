@@ -81,4 +81,32 @@ public class Information {
     public void setWebsite(Website website) {
         this.website = website;
     }
+
+    public Information(int id, String about, String welcome, String background, String logo, String name, Website website) {
+        this.id = id;
+        this.about = about;
+        this.welcome = welcome;
+        this.background = background;
+        this.logo = logo;
+        this.name = name;
+        this.website = website;
+    }
+
+    public Information(int id, String about, String welcome, String background, String logo, String name) {
+        this.id = id;
+        this.about = about;
+        this.welcome = welcome;
+        this.background = background;
+        this.logo = logo;
+        this.name = name;
+    }
+
+    public Information(String about, String welcome, String background, String logo, String name, Website website) {
+        this.about = about;
+        this.welcome = welcome;
+        this.background = background;
+        this.logo = logo;
+        this.name = name;
+        this.website = website;
+    }
 }
