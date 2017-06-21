@@ -1,4 +1,4 @@
-/**
+package test; /**
  * Created by reda-benchraa on 11/05/17.
  */
 /**
@@ -8,7 +8,7 @@
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Utils {
+public class Utiz {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
 

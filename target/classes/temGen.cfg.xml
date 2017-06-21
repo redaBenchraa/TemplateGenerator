@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.hbm2ddl.auto">create</property>
+  <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate?useSSL=false</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">r!D4##B00m</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+  <property name="show_sql">true</property>
+     <mapping class="models.Information"/>
+     <mapping class="models.Link"/>
+     <mapping class="models.User"/>
+     <mapping class="models.Service"/>
+     <mapping class="models.Template"/>
+     <mapping class="models.Website"/>
+     <mapping class="models.Project"/>
+ </session-factory>
+</hibernate-configuration>
