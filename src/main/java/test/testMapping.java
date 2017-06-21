@@ -10,7 +10,7 @@ import models.User;
 public class testMapping {
     public static void main(String[]args){
         try {
-            new userDAO().adduser(new User("reda","ben"));
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
