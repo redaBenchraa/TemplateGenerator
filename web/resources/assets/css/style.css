@@ -6,8 +6,11 @@ body {
     color: #888;
     line-height: 30px;
     text-align: center;
-}
 
+}
+.top-content{
+	background-color: #1b6d85;
+}
 strong { font-weight: 500; }
 
 a, a:hover, a:focus {
