@@ -1,7 +1,7 @@
 package DAO;
 
 import models.User;
-import org.hibernate.Criteria;
+import org.hibernate.*;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
