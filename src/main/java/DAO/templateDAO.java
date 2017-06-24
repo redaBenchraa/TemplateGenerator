@@ -22,10 +22,10 @@ public class templateDAO {
         return (List<Template>) session.createCriteria(Template.class).list();
     }
     public Template getTemplate(int id){
-        return session.get(Template.class, id);
+        return (Template) session.get(Template.class, id);
     }
     public int deleteTemplate(int id){
-        Template template = session.get(Template.class, id);
+        Template template = (Template) session.get(Template.class, id);
         if(template == null) return -1;
         session.beginTransaction();
         session.delete(template);

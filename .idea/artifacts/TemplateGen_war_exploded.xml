@@ -6,6 +6,8 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="TemplateGen" />
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/temGen.cfg.xml" />
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/hibernate-configuration-3.0.dtd" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.2.9.Final" />
@@ -49,7 +51,13 @@
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.6" />
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-annotations:3.3.0.ga" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate:3.2.4.sp1" />
+          <element id="library" level="project" name="Maven: cglib:cglib:2.1_3" />
+          <element id="library" level="project" name="Maven: asm:asm-attrs:1.5.3" />
+          <element id="library" level="project" name="Maven: asm:asm:1.5.3" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/temGen.cfg.xml" />
       </element>
     </root>
   </artifact>

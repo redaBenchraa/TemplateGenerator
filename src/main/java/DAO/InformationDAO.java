@@ -24,10 +24,10 @@ public class InformationDAO {
         return (List<Information>) session.createCriteria(Information.class).list();
     }
     public Information getInformation(int id){
-        return session.get(Information.class, id);
+        return (Information) session.get(Information.class, id);
     }
     public int deleteInformation(int id){
-        Information information = session.get(Information.class, id);
+        Information information = (Information) session.get(Information.class, id);
         if(information == null) return -1;
         session.beginTransaction();
         session.delete(information);

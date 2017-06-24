@@ -26,10 +26,10 @@ public class userDAO {
         return (List<User>) session.createCriteria(User.class).list();
     }
     public User getUser(int id){
-        return session.get(User.class, id);
+        return (User) session.get(User.class, id);
     }
     public int deleteUser(int id){
-        User user = session.get(User.class, id);
+        User user = (User) session.get(User.class, id);
         if(user == null) return -1;
         session.beginTransaction();
         session.delete(user);

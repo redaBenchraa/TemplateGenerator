@@ -24,10 +24,10 @@ public class websiteDAO {
         return (List<Website>) session.createCriteria(Website.class).list();
     }
     public Website getWebsite(int id){
-        return session.get(Website.class, id);
+        return (Website) session.get(Website.class, id);
     }
     public int deleteWebsite(int id){
-        Website website = session.get(Website.class, id);
+        Website website = (Website) session.get(Website.class, id);
         if(website == null) return -1;
         session.beginTransaction();
         session.delete(website);
