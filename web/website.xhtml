@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+    <meta content="*/*"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <h:outputStylesheet name="assets/css/form-elements.css" />
+    <h:outputStylesheet name="assets/css/style.css"/>
+    <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+    <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+    <h:outputScript name="assets/js/scripts.js"/>
+    <h:outputScript name="assets/bootstrap/js/bootstrap.min.js"/>
+</h:head>
+
+<h:body>
+    <f:view>
+        <h:form id="form">
+            <p:dataGrid var="link" value="#{websitesBean.links}" columns="3" layout="grid"
+                        rows="12" paginator="true" id="links"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Links
+                </f:facet>
+
+                <p:panel header="#{link.name}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:graphicImage name="demo/images/car/#{link.image}.gif"/>
+
+                        <h:outputText value="#{link.link}" />
+
+                        <p:commandLink title="delete">
+                            <h:outputText styleClass="ui-icon ui-icon-delete" style="margin:0 auto;" />
+                        </p:commandLink>
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

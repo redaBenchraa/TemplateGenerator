@@ -6,7 +6,6 @@ import com.sun.faces.facelets.util.Path;
 import models.User;
 import models.Website;
 import org.primefaces.model.UploadedFile;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -92,10 +91,9 @@ public class InformationBean {
                 webDAO.addwebsite(website);
             }
         }else{
-            System.out.println("no user logged in");
+            System.out.println("no user logged in");}
         }
 
-    }
 
     private String uploadImage(UploadedFile file){
         Random rand = new Random();
