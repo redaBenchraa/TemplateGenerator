@@ -1,8 +1,11 @@
 package Beans;
 
+<<<<<<< HEAD
 import DAO.InformationDAO;
 import com.sun.faces.facelets.util.Path;
 import models.Information;
+=======
+>>>>>>> 7899387d5119d3b291576755afab52bbffdd5147
 import org.primefaces.model.UploadedFile;
 
 import javax.faces.bean.ManagedBean;
