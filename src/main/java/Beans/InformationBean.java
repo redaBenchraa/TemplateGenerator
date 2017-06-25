@@ -1,7 +1,5 @@
 package Beans;
 
-import com.sun.faces.facelets.util.Path;
-import models.Information;
 import org.primefaces.model.UploadedFile;
 
 import javax.faces.bean.ManagedBean;
