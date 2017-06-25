@@ -41,17 +41,17 @@ public class userDAO {
         session.update(user);
         session.getTransaction().commit();
     }
-    public boolean checkUser(User user){
+    public int checkUser(User user){
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("username", user.getUsername()));
         criteria.add(Restrictions.eq("password", user.getPassword()));
-        if(criteria.list().size()>0) return true;
-        return false;
+        if(criteria.list().size()>0) return ((User)criteria.list().get(0)).getId();
+        return -1;
     }
-    public boolean findUser(User user){
+    public int findUser(User user){
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("username", user.getUsername()));
-        if(criteria.list().size()>0) return true;
-        return false;
+        if(criteria.list().size()>0) return ((User)criteria.list().get(0)).getId();
+        return -1;
     }
 }
