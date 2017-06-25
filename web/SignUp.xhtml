@@ -17,14 +17,13 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <h:outputStylesheet name="assets/css/form-elements.css" />
     <h:outputStylesheet name="assets/css/style.css"/>
-    <h:outputScript name="assets/js/jquery-1.11.1.js"/>
-    <h:outputScript name="assets/js/jquery.backstretch.min.js"/>
+    <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+    <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
     <h:outputScript name="assets/js/scripts.js"/>
     <h:outputScript name="assets/bootstrap/js/bootstrap.min.js"/>
-
 </h:head>
 
-<body>
+<h:body>
 
 <!-- Top content -->
     <div class="top-content">
@@ -43,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
             <div class="row">
                 <div class="col-sm-5">
 
@@ -58,18 +58,15 @@
                         </div>
                         <div class="form-bottom">
                             <h:form>
-                                <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">Username</label>
                                     <p:inputText type="text" name="form-username" value="#{signBean.username}" class="form-username form-control" id="form-username"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-password">Password</label>
-                                    <p:inputText type="password" name="form-password" value="#{signBean.password}"  class="form-password form-control" id="form-password"/>
+                                    <p:inputText type="password" name="form-password" value="#{signBean.password}" class="form-username form-control" id="form-password"/>
                                 </div>
-                                <p:commandButton class="btn" value="Login" update="growl" actionListener="#{signBean.login}"
-                                                 oncomplete="handleLoginRequest(xhr, status, args)" />
+                                <p:commandButton class="btn" value="Login" update="growl" actionListener="#{signBean.login}" />
 
                             </h:form>
                         </div>
@@ -94,18 +91,18 @@
                         <div class="form-bottom">
                             <form  action="" method="post" class="registration-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">First name</label>
-                                    <input type="text" name="form-first-name" class="form-first-name form-control" id="form-first-name"/>
+                                    <label class="sr-only" for="form-user">Username</label>
+                                    <p:inputText type="text" name="form-user" value="#{signBean.username}" class="form-username form-control" id="form-user"/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Last name</label>
-                                    <input type="text" name="form-last-name" class="form-last-name form-control" id="form-last-name"/>
+                                    <label class="sr-only" for="form-pass">Password</label>
+                                    <p:inputText type="password" name="form-pass" value="#{signBean.password}" class="form-username form-control" id="form-pass"/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Email</label>
-                                    <input type="text" name="form-email" class="form-email form-control" id="form-email"/>
+                                    <label class="sr-only" for="form-repassword">Email</label>
+                                    <p:inputText type="password" name="form-repassword" value="#{signBean.repassword}" class="form-username form-control" id="form-repassword"/>
                                 </div>
-                                <button type="submit" class="btn">Sign me up!</button>
+                                <p:commandButton class="btn" value="Signup" update="growl" actionListener="#{signBean.signup}" />
                             </form>
                         </div>
                     </div>
@@ -117,5 +114,6 @@
     </div>
 
 </div>
-</body>
+
+</h:body>
 </html>

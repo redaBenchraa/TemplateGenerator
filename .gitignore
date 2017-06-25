@@ -65,4 +65,4 @@ modules.xml
 target/
 
 # End of https://www.gitignore.io/api/java-web,intellij+iml
-/war/
+war/

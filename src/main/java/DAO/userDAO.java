@@ -48,4 +48,10 @@ public class userDAO {
         if(criteria.list().size()>0) return true;
         return false;
     }
+    public boolean findUser(User user){
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", user.getUsername()));
+        if(criteria.list().size()>0) return true;
+        return false;
+    }
 }

@@ -15,8 +15,6 @@ public class Utiz {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            // Crée une unique instance de la SessionFactory à partir de
-
             Configuration configuration = new AnnotationConfiguration().configure("temGen.cfg.xml");
             return configuration.buildSessionFactory();
         } catch (Throwable ex) {
