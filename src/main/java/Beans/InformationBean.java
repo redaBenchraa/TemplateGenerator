@@ -62,7 +62,7 @@ public class InformationBean {
     }
 
     public void saveData(){
-        Information info = new Information();
+        //Information info = new Information();
         File uploads = new File("uploads");
         if(!uploads.exists()) {
             boolean successful = new File("uploads").mkdir();
@@ -73,9 +73,9 @@ public class InformationBean {
                 Files.copy(bgInput, Paths.get("uploads",background.getFileName()), StandardCopyOption.REPLACE_EXISTING);
                 InputStream logoInput = logo.getInputstream();
                 Files.copy(logoInput, Paths.get("uploads",logo.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                info.setName(getName());
-                info.setWelcome(getWelcome());
-                info.setAbout(getAbout());
+            //    info.setName(getName());
+            //    info.setWelcome(getWelcome());
+           //     info.setAbout(getAbout());
             }catch (IOException e){
                 System.out.println(e);
             }

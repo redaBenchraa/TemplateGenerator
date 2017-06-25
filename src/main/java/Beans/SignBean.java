@@ -6,10 +6,14 @@ import org.primefaces.context.RequestContext;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Rabab Chahboune on 6/22/2017.
@@ -59,6 +63,14 @@ public class SignBean implements Serializable {
             servletContext.setAttribute("idUser",userId);
             loggedIn = true;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
+            String url = "websites.xhtml" ;
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+            try {
+                ec.redirect(url);
+            } catch (IOException ex) {
+                Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
@@ -83,7 +95,14 @@ public class SignBean implements Serializable {
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome new user", username);
                 ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
                 servletContext.setAttribute("idUser",userDA.findUser(user));
-
+                String url = "websites.xhtml" ;
+                FacesContext fc = FacesContext.getCurrentInstance();
+                ExternalContext ec = fc.getExternalContext();
+                try {
+                    ec.redirect(url);
+                } catch (IOException ex) {
+                    Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
