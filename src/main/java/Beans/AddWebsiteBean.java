@@ -1,8 +1,14 @@
 package Beans;
 
+import DAO.userDAO;
+import DAO.websiteDAO;
+import com.sun.faces.facelets.util.Path;
+import models.User;
+import models.Website;
 import org.primefaces.model.UploadedFile;
-
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +22,7 @@ import java.util.Random;
  * Created by Rabab Chahboune on 6/24/2017.
  */
 @ManagedBean
-public class InformationBean {
+public class AddWebsiteBean {
     private String name;
     private String welcome;
     private String about;
@@ -65,25 +71,29 @@ public class InformationBean {
     }
 
     public void saveData(){
-        //Information info = new Information();
-        File uploads = new File(path);
-        if(!uploads.exists()) {
-            boolean successful = new File(path).mkdir();
-        }
-        if(background !=null && logo!=null){
-            try{
-                InputStream bgInput = background.getInputstream();
-                Files.copy(bgInput, Paths.get("uploads",background.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                InputStream logoInput = logo.getInputstream();
-                Files.copy(logoInput, Paths.get("uploads",logo.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            //    info.setName(getName());
-            //    info.setWelcome(getWelcome());
-           //     info.setAbout(getAbout());
-            }catch (IOException e){
-                System.out.println(e);
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        if(servletContext.getAttribute("idUser")!=null){
+            String userId = (String) servletContext.getAttribute("idUser");
+            User user  = new userDAO().getUser(Integer.parseInt(userId));
+            Website website = new Website();
+            File uploads = new File(path);
+            if(!uploads.exists()) {
+                boolean successful = new File(path).mkdir();
             }
+            if(background !=null && logo!=null){
+                website.setName(getName());
+                website.setWelcome(getWelcome());
+                website.setAbout(getAbout());
+                website.setBackground(uploadImage(getBackground()));
+                website.setLogo(uploadImage(getLogo()));
+                website.setUser(user);
+                websiteDAO webDAO = new websiteDAO();
+                webDAO.addwebsite(website);
+            }
+        }else{
+            System.out.println("no user logged in");}
         }
-    }
+
 
     private String uploadImage(UploadedFile file){
         Random rand = new Random();

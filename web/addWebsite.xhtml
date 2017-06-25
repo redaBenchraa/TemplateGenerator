@@ -14,11 +14,11 @@
 <h:body>
     <h:form enctype="multipart/form-data">
         <h3 class="first">Name</h3>
-        <p:inputTextarea rows="2" style="width:95%;" value="#{informationBean.name}" required="true" />
+        <p:inputTextarea rows="2" style="width:95%;" value="#{addWebsiteBean.name}" required="true" />
         <h3 class="first">Welcome</h3>
-        <p:inputTextarea rows="2" style="width:95%;"  value="#{informationBean.welcome}" required="true"/>
+        <p:inputTextarea rows="2" style="width:95%;" value="#{addWebsiteBean.welcome}" required="true"/>
         <h3 class="first">About</h3>
-        <p:textEditor widgetVar="editor2" value="#{informationBean.about}" height="300" style="margin-bottom:10px" placeholder="Enter your content" required="true">
+        <p:textEditor widgetVar="editor2" value="#{addWebsiteBean.about}" height="300" style="margin-bottom:10px" placeholder="Enter your content" required="true">
             <f:facet name="toolbar">
              <span class="ql-formats">
                 <button class="ql-bold"></button>
@@ -32,7 +32,14 @@
             </span>
             </f:facet>
         </p:textEditor>
-        <p:commandButton value="Add" ajax="false" actionListener="#{informationBean.saveData}" />
+        <h3>Choose background</h3>
+        <p:growl id="messages" showDetail="true" />
+        <p:fileUpload value="#{addWebsiteBean.background}" mode="simple" skinSimple="true" required="true"/>
+        <h3>Choose logo</h3>
+        <p:growl id="messages1" showDetail="true" />
+        <p:fileUpload value="#{addWebsiteBean.logo}" mode="simple" skinSimple="true" required="true"/>
+        <br/>
+        <p:commandButton value="Submit" ajax="false" actionListener="#{addWebsiteBean.saveData}" />
     </h:form>
 </h:body>
 </html>
