@@ -53,11 +53,9 @@ public class SignBean implements Serializable {
         userDAO userDA= new userDAO();
         System.out.println(userDA.checkUser(user));
         if(userDA.checkUser(user)) {
-            System.out.println("zzz");
             loggedIn = true;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
         } else {
-            System.out.println("cc");
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
         }
@@ -67,8 +65,22 @@ public class SignBean implements Serializable {
     }
     public void signup(ActionEvent event) {
         RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage message = null;
+        if(!password.equals(repassword)){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Password unmachted", "");
+        }else{
+            User user = new User(username,password);
+            userDAO userDA= new userDAO();
+            if(userDA.findUser(user)) {
+                message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Sign up Error", "User exists");
+            } else {
+                userDA.adduser(user);
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome new user", username);
+            }
+        }
 
-
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        context.addCallbackParam("loggedIn", true);
 
     }
 }
