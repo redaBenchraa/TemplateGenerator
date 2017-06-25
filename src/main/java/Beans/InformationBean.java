@@ -1,5 +1,6 @@
 package Beans;
 
+import DAO.InformationDAO;
 import com.sun.faces.facelets.util.Path;
 import models.Information;
 import org.primefaces.model.UploadedFile;
@@ -11,6 +12,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Random;
+
 
 /**
  * Created by Rabab Chahboune on 6/24/2017.
@@ -22,6 +25,7 @@ public class InformationBean {
     private String about;
     private UploadedFile background;
     private UploadedFile  logo;
+    private static String path = "uploads";
 
     public String getAbout() {
         return about;
@@ -65,28 +69,30 @@ public class InformationBean {
 
     public void saveData(){
         Information info = new Information();
-        File uploads = new File("uploads");
+        File uploads = new File(path);
         if(!uploads.exists()) {
-            boolean successful = new File("uploads").mkdir();
+            boolean successful = new File(path).mkdir();
         }
         if(background !=null && logo!=null){
-            try{
-                InputStream bgInput = background.getInputstream();
-                Files.copy(bgInput, Paths.get("uploads",background.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                InputStream logoInput = logo.getInputstream();
-                Files.copy(logoInput, Paths.get("uploads",logo.getFileName()), StandardCopyOption.REPLACE_EXISTING);
                 info.setName(getName());
                 info.setWelcome(getWelcome());
                 info.setAbout(getAbout());
-            }catch (IOException e){
-                System.out.println(e);
-            }
+                info.setBackground(uploadImage(getBackground()));
+                info.setLogo(uploadImage(getLogo()));
+                InformationDAO infoDAO = new InformationDAO();
+                infoDAO.addinformation(info);
         }
     }
 
-    private void uploadImage(UploadedFile file){
-
-
+    private String uploadImage(UploadedFile file){
+        Random rand = new Random();
+        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
+        try{
+            InputStream Input = file.getInputstream();
+            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        return path+"/"+fileName;
     }
-
 }
