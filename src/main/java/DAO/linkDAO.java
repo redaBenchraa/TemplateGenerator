@@ -24,10 +24,10 @@ public class linkDAO {
         return (List<Link>) session.createCriteria(Link.class).list();
     }
     public Link getLink(int id){
-        return session.get(Link.class, id);
+        return (Link) session.get(Link.class, id);
     }
     public int deleteLink(int id){
-        Link link = session.get(Link.class, id);
+        Link link = (Link) session.get(Link.class, id);
         if(link == null) return -1;
         session.beginTransaction();
         session.delete(link);

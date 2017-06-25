@@ -6,6 +6,7 @@ package DAO; /**
  */
 
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class Utiz {
@@ -15,7 +16,8 @@ public class Utiz {
     private static SessionFactory buildSessionFactory() {
         try {
             // Crée une unique instance de la SessionFactory à partir de
-            Configuration configuration = new Configuration().configure("temGen.cfg.xml");
+
+            Configuration configuration = new AnnotationConfiguration().configure("temGen.cfg.xml");
             return configuration.buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Problème de configuration : " + ex);

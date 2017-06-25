@@ -22,10 +22,10 @@ public class projectDAO {
         return (List<Project>) session.createCriteria(Project.class).list();
     }
     public Project getProject(int id){
-        return session.get(Project.class, id);
+        return (Project) session.get(Project.class, id);
     }
     public int deleteProject(int id){
-        Project project = session.get(Project.class, id);
+        Project project = (Project) session.get(Project.class, id);
         if(project == null) return -1;
         session.beginTransaction();
         session.delete(project);

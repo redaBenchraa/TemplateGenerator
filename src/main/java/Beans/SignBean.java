@@ -51,17 +51,15 @@ public class SignBean implements Serializable {
         User user = new User(username,password);
         System.out.println(username + " " + password);
         userDAO userDA= new userDAO();
-
+        System.out.println(userDA.checkUser(user));
         if(userDA.checkUser(user)) {
             System.out.println("zzz");
-
             loggedIn = true;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
         } else {
             System.out.println("cc");
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
-
         }
 
         FacesContext.getCurrentInstance().addMessage(null, message);

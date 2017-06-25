@@ -22,10 +22,10 @@ public class ServiceDAO {
         return (List<Service>) session.createCriteria(Service.class).list();
     }
     public Service getService(int id){
-        return session.get(Service.class, id);
+        return (Service) session.get(Service.class, id);
     }
     public int deleteService(int id){
-        Service Service = session.get(Service.class, id);
+        Service Service = (models.Service) session.get(Service.class, id);
         if(Service == null) return -1;
         session.beginTransaction();
         session.delete(Service);

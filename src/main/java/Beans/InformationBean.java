@@ -78,16 +78,15 @@ public class InformationBean {
                 info.setName(getName());
                 info.setWelcome(getWelcome());
                 info.setAbout(getAbout());
-                info.setBackground();
             }catch (IOException e){
                 System.out.println(e);
             }
         }
     }
 
-    private String uploadImage(UploadedFile file){
+    private void uploadImage(UploadedFile file){
 
-        
+
     }
 
 }
