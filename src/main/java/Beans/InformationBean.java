@@ -1,14 +1,15 @@
 package Beans;
 
-<<<<<<< HEAD
-import DAO.InformationDAO;
+import DAO.userDAO;
+import DAO.websiteDAO;
 import com.sun.faces.facelets.util.Path;
-import models.Information;
-=======
->>>>>>> 7899387d5119d3b291576755afab52bbffdd5147
+import models.User;
+import models.Website;
 import org.primefaces.model.UploadedFile;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,20 +72,29 @@ public class InformationBean {
     }
 
     public void saveData(){
-        Information info = new Information();
-        File uploads = new File(path);
-        if(!uploads.exists()) {
-            boolean successful = new File(path).mkdir();
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        if(servletContext.getAttribute("idUser")!=null){
+            String userId = (String) servletContext.getAttribute("idUser");
+            User user  = new userDAO().getUser(Integer.parseInt(userId));
+            Website website = new Website();
+            File uploads = new File(path);
+            if(!uploads.exists()) {
+                boolean successful = new File(path).mkdir();
+            }
+            if(background !=null && logo!=null){
+                website.setName(getName());
+                website.setWelcome(getWelcome());
+                website.setAbout(getAbout());
+                website.setBackground(uploadImage(getBackground()));
+                website.setLogo(uploadImage(getLogo()));
+                website.setUser(user);
+                websiteDAO webDAO = new websiteDAO();
+                webDAO.addwebsite(website);
+            }
+        }else{
+            System.out.println("no user logged in");
         }
-        if(background !=null && logo!=null){
-                info.setName(getName());
-                info.setWelcome(getWelcome());
-                info.setAbout(getAbout());
-                info.setBackground(uploadImage(getBackground()));
-                info.setLogo(uploadImage(getLogo()));
-                InformationDAO infoDAO = new InformationDAO();
-                infoDAO.addinformation(info);
-        }
+
     }
 
     private String uploadImage(UploadedFile file){

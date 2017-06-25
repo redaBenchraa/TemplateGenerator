@@ -10,11 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-<<<<<<< HEAD
       <module name="TemplateGen" target="1.8" />
-=======
-      <module name="TemplateGen" target="1.5" />
->>>>>>> 7899387d5119d3b291576755afab52bbffdd5147
     </bytecodeTargetLevel>
   </component>
 </project>
