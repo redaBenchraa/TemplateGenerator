@@ -1,69 +1,140 @@
 package Beans;
 
+import DAO.ServiceDAO;
+import DAO.linkDAO;
+import DAO.projectDAO;
 import DAO.websiteDAO;
 import models.Link;
 import models.Project;
 import models.Service;
+import models.Website;
 import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by reda-benchraa on 25/06/17.
  */
 @ManagedBean
-
+@ViewScoped
 public class WebsiteBean {
-    private List<Link> links;
-    private List<Project> projects;
-    private List<Service> services;
+    private Website website;
+    String id;
     @PostConstruct
     public void init() {
-        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-
+        id =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        website = new websiteDAO().getWebsite(Integer.parseInt(id));
+        System.out.println("value = "+ id);
     }
-    public void delete(int id){
-
+    public void deletelink(int id){
         RequestContext context = RequestContext.getCurrentInstance();
-
         FacesMessage message = null;
-        if(new websiteDAO().deleteWebsite(id) != -1){
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Website deleted", "Website deleted");
+        if(new linkDAO().deleteLink(id) != -1){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "link deleted", "link deleted");
         }else{
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error deleting websites", "Erro deleting websites");
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error deleting websites", "Erro deleting websites");
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error deleting link", "Error deleting link");
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("delete", true);
     }
-
-    public List<Link> getLinks() {
-        return links;
+    public void deleteService(int id){
+        RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage message = null;
+        if(new ServiceDAO().deleteService(id) != -1){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "service deleted", "service deleted");
+        }else{
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error deleting service", "Error deleting service");
+        }
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        context.addCallbackParam("delete", true);
+    }
+    public void deleteProject(int id){
+        RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage message = null;
+        if(new projectDAO().deleteProject(id) != -1){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Project deleted", "Project deleted");
+        }else{
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error deleting Project", "Error deleting Project");
+        }
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        context.addCallbackParam("delete", true);
+    }
+    public void editlink(int id){
+        String url = "editLink.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void editService(int id){
+        String url = "editService.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void editProject(int id){
+        String url = "editProject.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void addlink(int id){
+        String url = "addLink.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void addService(int id){
+        String url = "addService.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void addProject(int id){
+        String url = "addProject.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public Website getWebsite() {
+        return website;
     }
 
-    public void setLinks(List<Link> links) {
-        this.links = links;
+    public void setWebsite(Website website) {
+        this.website = website;
     }
 
-    public List<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
-    }
-
-    public List<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(List<Service> services) {
-        this.services = services;
-    }
 }

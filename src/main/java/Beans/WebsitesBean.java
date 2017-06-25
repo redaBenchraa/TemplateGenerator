@@ -37,7 +37,6 @@ public class WebsitesBean implements Serializable {
         return websites;
     }
     public void delete(int id){
-
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage message = null;
         if(new websiteDAO().deleteWebsite(id) != -1){
@@ -50,6 +49,16 @@ public class WebsitesBean implements Serializable {
     }
     public void add(){
         String url = "addWebsite.xhtml" ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void view(int id){
+        String url = "website.xhtml?id="+id ;
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {
