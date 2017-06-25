@@ -22,7 +22,7 @@ import java.util.Random;
  * Created by Rabab Chahboune on 6/24/2017.
  */
 @ManagedBean
-public class InformationBean {
+public class AddWebsiteBean {
     private String name;
     private String welcome;
     private String about;
