@@ -7,7 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
     <meta content="*/*"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -25,10 +24,12 @@
 
 <h:body>
     <f:view>
+        <p:growl id="growl" life="2000" />
+
         <h:form id="form">
-            <p:dataGrid var="link" value="#{websitesBean.links}" columns="3" layout="grid"
-                        rows="12" paginator="true" id="links"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            <p:dataGrid var="link" value="#{websiteBean.website.links}" columns="4" layout="grid"
+                        rows="3" paginator="true" id="links"
+                        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
                         rowsPerPageTemplate="6,12,16">
 
                 <f:facet name="header">
@@ -37,17 +38,60 @@
 
                 <p:panel header="#{link.name}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
-                        <p:graphicImage name="demo/images/car/#{link.image}.gif"/>
+                        <p:graphicImage name="demo/images/car/#{link.image}"/>
 
                         <h:outputText value="#{link.link}" />
-
-                        <p:commandLink title="delete">
-                            <h:outputText styleClass="ui-icon ui-icon-delete" style="margin:0 auto;" />
-                        </p:commandLink>
+                        <p:commandButton value="Delete" id="deleteLink"  actionListener="#{websiteBean.deletelink(link.id)}" styleClass="ui-priority-primary" />
+                        <p:commandButton value="Edit" id="editLink"  actionListener="#{websiteBean.editlink(link.id)}" styleClass="ui-priority-primary" />
                     </h:panelGrid>
                 </p:panel>
 
             </p:dataGrid>
+            <p:commandButton value="Add link" id="addLink"  actionListener="#{websiteBean.addlink(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+
+            <p:dataGrid var="project" value="#{websiteBean.website.projects}" columns="4" layout="grid"
+                        rows="3" paginator="true" id="projects"
+                        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Projects
+                </f:facet>
+
+                <p:panel header="#{project.name}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:graphicImage name="demo/images/car/#{project.image}"/>
+
+                        <h:outputText value="#{project.about}" />
+                        <p:commandButton value="Delete" id="deleteProject"  actionListener="#{websiteBean.deleteProject(project.id)}" styleClass="ui-priority-primary" />
+                        <p:commandButton value="Edit" id="editProject"  actionListener="#{websiteBean.editProject(project.id)}" styleClass="ui-priority-primary" />
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+            <p:commandButton value="Add project" id="addProject"  actionListener="#{websiteBean.addProject(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+
+            <p:dataGrid var="service" value="#{websiteBean.website.services}" columns="4" layout="grid"
+                        rows="3" paginator="true" id="services"
+                        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Services
+                </f:facet>
+
+                <p:panel header="#{service.name}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:graphicImage name="demo/images/car/#{link.image}"/>
+                        <h:outputText value="#{service.about}" />
+                        <p:commandButton value="Delete" id="deleteService"  actionListener="#{websiteBean.deleteService(service.id)}" styleClass="ui-priority-primary" />
+                        <p:commandButton value="Edit" id="editService"  actionListener="#{websiteBean.editService(service.id)}" styleClass="ui-priority-primary" />
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+            <p:commandButton value="Add Service" id="addService"  actionListener="#{websiteBean.addService(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+
         </h:form>
     </f:view>
 </h:body>

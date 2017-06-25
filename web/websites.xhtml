@@ -44,7 +44,7 @@
                         <h:outputText value="Name:" />
                         <h:outputText value="#{website.name}" style="font-weight: bold"/>
                         <p:commandButton value="Delete" id="deleteWebsite" update="growl"    actionListener="#{websitesBean.delete(website.id)}" styleClass="ui-priority-primary" />
-                        <p:commandButton value="Delete" id="viewWebsite"  actionListener="#{websitesBean.view(website.id)}" styleClass="ui-priority-primary" />
+                        <p:commandButton value="view" id="viewWebsite"  actionListener="#{websitesBean.view(website.id)}" styleClass="ui-priority-primary" />
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>
