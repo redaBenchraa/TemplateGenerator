@@ -8,7 +8,10 @@ import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+<<<<<<< HEAD
 import javax.faces.bean.ViewScoped;
+=======
+>>>>>>> master
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -122,7 +125,11 @@ public class UpdateWebsiteBean {
             website.setLogo(uploadImage(getLogo()));
         }
         webDAO.updateWebsite(website);
+<<<<<<< HEAD
         String url = "website.xhtml?id="+value ;
+=======
+        String url = "website.xhtml?id="+website.getId() ;
+>>>>>>> master
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {
@@ -130,6 +137,10 @@ public class UpdateWebsiteBean {
         } catch (IOException ex) {
             Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     }
 
 
