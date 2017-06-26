@@ -68,7 +68,7 @@ public class GenerationBean {
         new File(fileName+"Images").delete();
         InputStream is = null;
         try {
-            is = new ByteArrayInputStream( Files.readAllBytes(new File(fileName).toPath()) );
+            is = new ByteArrayInputStream( Files.readAllBytes(new File(fileName+".zip").toPath()) );
         } catch (IOException e) {
             e.printStackTrace();
         }
