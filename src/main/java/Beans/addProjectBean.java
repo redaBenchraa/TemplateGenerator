@@ -5,14 +5,13 @@ package Beans;
  */
 
 import DAO.linkDAO;
+import DAO.projectDAO;
 import DAO.websiteDAO;
-import models.Link;
+import models.Project;
 import org.primefaces.model.UploadedFile;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
@@ -25,20 +24,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ManagedBean
-@ViewScoped
-public class addLinkBean {
-    String value ;
-    @PostConstruct
-    void init(){
-        value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-    }
+public class addProjectBean {
     private String name;
-    private String link;
+    private String about;
     private UploadedFile image;
-    private static String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/uploads";
-    private static String partPath = "uploads";
-
-
+    private static String path = "uploads";
 
     public String getName() {
         return name;
@@ -48,12 +38,12 @@ public class addLinkBean {
         this.name = name;
     }
 
-    public String getLink() {
-        return link;
+    public String getAbout() {
+        return about;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setAbout(String link) {
+        this.about = link;
     }
 
     public UploadedFile getImage() {
@@ -65,14 +55,15 @@ public class addLinkBean {
     }
 
     public void saveData(){
-        Link l = new Link();
+        Project l = new Project();
+        String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         l.setWebsite(new websiteDAO().getWebsite(Integer.parseInt(value)));
         l.setName(getName());
-        l.setLink(getLink());
+        l.setAbout(getAbout());
         if(image.getSize()!=0){
-            l.setLink(uploadImage(image));
-            linkDAO lDAO = new linkDAO();
-            lDAO.addlink(l);
+            l.setImage(uploadImage(image));
+            projectDAO lDAO = new projectDAO();
+            lDAO.addproject(l);
             String url = "website.xhtml?id="+value ;
             FacesContext fc = FacesContext.getCurrentInstance();
             ExternalContext ec = fc.getExternalContext();
@@ -98,6 +89,6 @@ public class addLinkBean {
         }catch (IOException e){
             System.out.println(e);
         }
-        return partPath+"/"+fileName;
+        return path+"/"+fileName;
     }
 }

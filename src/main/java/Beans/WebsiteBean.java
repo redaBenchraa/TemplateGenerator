@@ -33,8 +33,7 @@ public class WebsiteBean {
     @PostConstruct
     public void init() {
         id =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-        website = new websiteDAO().getWebsite(Integer.parseInt("2"));
-        System.out.println("value = "+ id);
+        website = new websiteDAO().getWebsite(Integer.parseInt(id));
     }
     public void deletelink(int id){
         RequestContext context = RequestContext.getCurrentInstance();
