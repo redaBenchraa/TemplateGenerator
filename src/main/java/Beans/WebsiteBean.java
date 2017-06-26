@@ -29,11 +29,11 @@ import java.util.logging.Logger;
 @ViewScoped
 public class WebsiteBean {
     private Website website;
-    String id;
+    String value;
     @PostConstruct
     public void init() {
-        id =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-        website = new websiteDAO().getWebsite(Integer.parseInt(id));
+        value =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        website = new websiteDAO().getWebsite(Integer.parseInt(value));
     }
     public void deletelink(int id){
         RequestContext context = RequestContext.getCurrentInstance();
@@ -45,6 +45,14 @@ public class WebsiteBean {
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("delete", true);
+        String url = "website.xhtml?id="+value ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void deleteService(int id){
         RequestContext context = RequestContext.getCurrentInstance();
@@ -56,6 +64,14 @@ public class WebsiteBean {
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("delete", true);
+        String url = "website.xhtml?id="+value ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void deleteProject(int id){
         RequestContext context = RequestContext.getCurrentInstance();
@@ -67,6 +83,14 @@ public class WebsiteBean {
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("delete", true);
+        String url = "website.xhtml?id="+value ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void editlink(int id){
         String url = "editLink.xhtml?id="+id ;
