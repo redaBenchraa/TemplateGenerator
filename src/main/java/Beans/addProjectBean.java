@@ -4,14 +4,15 @@ package Beans;
  * Created by Rabab Chahboune on 6/25/2017.
  */
 
-import DAO.linkDAO;
 import DAO.projectDAO;
 import DAO.websiteDAO;
 import models.Project;
 import org.primefaces.model.UploadedFile;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
@@ -24,11 +25,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ManagedBean
+@ViewScoped
 public class addProjectBean {
+    String value ;
+    @PostConstruct
+    void init(){
+        value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+    }
     private String name;
     private String about;
     private UploadedFile image;
-    private static String path = "uploads";
+    private static String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/uploads";
+    private static String partPath = "uploads";
+
+
 
     public String getName() {
         return name;
@@ -42,8 +52,8 @@ public class addProjectBean {
         return about;
     }
 
-    public void setAbout(String link) {
-        this.about = link;
+    public void setAbout(String project) {
+        this.about = project;
     }
 
     public UploadedFile getImage() {
@@ -56,7 +66,6 @@ public class addProjectBean {
 
     public void saveData(){
         Project l = new Project();
-        String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         l.setWebsite(new websiteDAO().getWebsite(Integer.parseInt(value)));
         l.setName(getName());
         l.setAbout(getAbout());
@@ -89,6 +98,6 @@ public class addProjectBean {
         }catch (IOException e){
             System.out.println(e);
         }
-        return path+"/"+fileName;
+        return partPath+"/"+fileName;
     }
 }
