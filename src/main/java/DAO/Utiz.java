@@ -10,6 +10,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.primefaces.model.UploadedFile;
 
+import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -18,8 +19,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.Random;
 
 public class Utiz {
-    private static String path = "uploads";
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    private static String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/uploads";
+    private static String partPath = "uploads";    private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -48,6 +49,6 @@ public class Utiz {
         }catch (IOException e){
             System.out.println(e);
         }
-        return path+"/"+fileName;
+        return partPath+"/"+fileName;
     }
 }
