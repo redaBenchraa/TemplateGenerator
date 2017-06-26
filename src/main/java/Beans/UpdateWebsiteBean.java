@@ -1,5 +1,6 @@
 package Beans;
 
+import DAO.Utiz;
 import DAO.userDAO;
 import DAO.websiteDAO;
 import models.User;
@@ -96,19 +97,16 @@ public class UpdateWebsiteBean {
         website.setName(getName());
         website.setAbout(getAbout());
         website.setName(getName());
-        File uploads = new File(path);
-        if(!uploads.exists()) {
-            boolean successful = new File(path).mkdir();
-        }
+        Utiz.checkUploadFolder();
         if(background.getSize() != 0 ){
             File bg = new File(website.getBackground());
             bg.delete();
-            website.setBackground(uploadImage(getBackground()));
+            website.setBackground(Utiz.uploadImage(getBackground()));
         }
         if(logo.getSize() != 0){
             File lg = new File(website.getLogo());
             lg.delete();
-            website.setLogo(uploadImage(getLogo()));
+            website.setLogo(Utiz.uploadImage(getLogo()));
         }
         webDAO.updateWebsite(website);
         String url = "website.xhtml?id="+value ;
@@ -119,19 +117,6 @@ public class UpdateWebsiteBean {
         } catch (IOException ex) {
             Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-
-    private String uploadImage(UploadedFile file){
-        Random rand = new Random();
-        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
-        try{
-            InputStream Input = file.getInputstream();
-            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return partPath+"/"+fileName;
     }
     public void cancel(){
         String url = "website.xhtml?id="+value ;

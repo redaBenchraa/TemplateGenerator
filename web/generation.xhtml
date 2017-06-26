@@ -35,7 +35,9 @@
                             </p:selectOneMenu>
                             <br/>
                             <br/>
-                            <p:commandButton class="btn" value="Generate" actionListener="#{generationBean.generateFile}" required="true"/>
+                            <p:commandButton value="Generate" ajax="false" icon="ui-icon-arrowthick-1-s">
+                                <p:fileDownload value="#{generationBean.generateFile()}" />
+                            </p:commandButton>
                         </h:form>
                     </div>
                 </div>

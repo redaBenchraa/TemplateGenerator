@@ -47,7 +47,9 @@
                         <p:commandButton value="Delete" id="deleteWebsite" update="growl"    actionListener="#{websitesBean.delete(website.id)}" styleClass="ui-priority-primary" />
                         <p:commandButton value="view" id="viewWebsite"  actionListener="#{websitesBean.view(website.id)}" styleClass="ui-priority-primary" />
                         <p:commandButton value="generate" id="generateWebsite"  actionListener="#{websitesBean.generate(website.id)}" styleClass="ui-priority-primary" />
-
+                        <p:commandButton value="generate" ajax="false" icon="ui-icon-arrowthick-1-s">
+                            <p:fileDownload value="#{websitesBean.downloadBean(website.id)}" />
+                        </p:commandButton>
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>

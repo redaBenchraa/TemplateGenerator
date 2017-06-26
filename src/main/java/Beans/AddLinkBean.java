@@ -4,6 +4,7 @@ package Beans;
  * Created by Rabab Chahboune on 6/25/2017.
  */
 
+import DAO.Utiz;
 import DAO.linkDAO;
 import DAO.websiteDAO;
 import models.Link;
@@ -16,17 +17,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ManagedBean
 @ViewScoped
-public class addLinkBean {
+public class AddLinkBean {
     String value ;
     @PostConstruct
     void init(){
@@ -35,8 +31,7 @@ public class addLinkBean {
     private String name;
     private String link;
     private UploadedFile image;
-    private static String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/uploads";
-    private static String partPath = "uploads";
+
 
 
 
@@ -69,8 +64,9 @@ public class addLinkBean {
         l.setWebsite(new websiteDAO().getWebsite(Integer.parseInt(value)));
         l.setName(getName());
         l.setLink(getLink());
+        Utiz.checkUploadFolder();
         if(image.getSize()!=0){
-            l.setImage(uploadImage(image));
+            l.setImage(Utiz.uploadImage(image));
             linkDAO lDAO = new linkDAO();
             lDAO.addlink(l);
             String url = "website.xhtml?id="+value ;
@@ -89,15 +85,6 @@ public class addLinkBean {
 
     }
 
-    private String uploadImage(UploadedFile file){
-        Random rand = new Random();
-        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
-        try{
-            InputStream Input = file.getInputstream();
-            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return partPath+"/"+fileName;
-    }
+
+
 }

@@ -22,8 +22,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -47,19 +49,31 @@ public class GenerationBean {
         templates = new templateDAO().getTemplates();
     }
 
-    public void generateFile(){
+    public StreamedContent generateFile(){
         System.out.println("Template : "+ template);
         SOURCE_FOLDER = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/Templates/"+template.getLink();
         fileList = new ArrayList<String>();
         String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+ "/Templates/";
         String imagesPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+ "/uploads/";
-        ZipUtil.pack(new File(imagesPath), new File(path+website.getName()+"Images.zip"));
+        String fileName = path + website.getName() + new Date().getTime();
+
+        ZipUtil.pack(new File(imagesPath), new File(fileName+"Images"));
         ZipEntrySource[] entries = new ZipEntrySource[] {
-                new FileSource("uploads.zip", new File(path+website.getName()+"Images.zip")),
+                new FileSource("uploads.zip", new File(fileName+"Images")),
                 new ByteSource("data.json",getJSON().getBytes())
         };
-        ZipUtil.pack(new File(SOURCE_FOLDER), new File(path+website.getName()+".zip"));
-        ZipUtil.addEntries(new File(path+website.getName()+".zip"), entries, new File(path+website.getName()+"1.zip"));
+        ZipUtil.pack(new File(SOURCE_FOLDER), new File(fileName));
+        ZipUtil.addEntries(new File(fileName), entries, new File(fileName+".zip"));
+        new File(fileName).delete();
+        new File(fileName+"Images").delete();
+        InputStream is = null;
+        try {
+            is = new ByteArrayInputStream( Files.readAllBytes(new File(fileName).toPath()) );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        file = new DefaultStreamedContent(is, "text", website.getName()+".zip");
+        return file;
     }
 
     public String getJSON() {

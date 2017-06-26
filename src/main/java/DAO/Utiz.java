@@ -8,10 +8,20 @@ package DAO; /**
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
+import org.primefaces.model.UploadedFile;
+
+import javax.faces.context.FacesContext;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Random;
 
 public class Utiz {
-
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    private static String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/uploads";
+    private static String partPath = "uploads";    private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -31,5 +41,22 @@ public class Utiz {
         // Close caches and connection pools
         getSessionFactory().close();
     }
+    public static String uploadImage(UploadedFile file){
+        Random rand = new Random();
+        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
+        try{
+            InputStream Input = file.getInputstream();
+            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        return partPath+"/"+fileName;
+    }
 
+    public static void  checkUploadFolder(){
+        File uploads = new File(path);
+        if(!uploads.exists()) {
+            boolean successful = new File(path).mkdir();
+        }
+    }
 }
