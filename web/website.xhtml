@@ -24,9 +24,22 @@
 
 <h:body>
     <f:view>
-        <p:growl id="growl" life="2000" />
+        <h:form>
+            <p:growl id="msgs" showDetail="true" />
 
+            <p:fieldset legend="Information" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="5">
+                    Logo : <p:graphicImage value="#{websiteBean.website.logo}" height="150px" />
+                    Background : <p:graphicImage value="#{websiteBean.website.background}" height="150px" />
+                    Name : <h:outputText value="#{websiteBean.website.name}" />
+                    About : <h:outputText value="#{websiteBean.website.about}" escape="false" />
+                    <p:commandButton value="Edit" id="Edit"  actionListener="#{websiteBean.edit(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+                </h:panelGrid>
+            </p:fieldset>
+
+        </h:form>
         <h:form id="form">
+            <p:growl id="growl" life="2000" />
             <p:dataGrid var="link" value="#{websiteBean.website.links}" columns="4" layout="grid"
                         rows="3" paginator="true" id="links"
                         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
@@ -47,7 +60,10 @@
                 </p:panel>
 
             </p:dataGrid>
-            <p:commandButton value="Add link" id="addLink"  actionListener="#{websiteBean.addlink(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+            <br/>
+            <p:commandButton value="Add link" id="addlink"  actionListener="#{websiteBean.addlink(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+            <br/>
+            <br/>
 
             <p:dataGrid var="project" value="#{websiteBean.website.projects}" columns="4" layout="grid"
                         rows="3" paginator="true" id="projects"
@@ -69,7 +85,10 @@
                 </p:panel>
 
             </p:dataGrid>
+            <br/>
             <p:commandButton value="Add project" id="addProject"  actionListener="#{websiteBean.addProject(websiteBean.website.id)}" styleClass="ui-priority-primary" />
+            <br/>
+            <br/>
 
             <p:dataGrid var="service" value="#{websiteBean.website.services}" columns="4" layout="grid"
                         rows="3" paginator="true" id="services"
@@ -90,8 +109,10 @@
                 </p:panel>
 
             </p:dataGrid>
+            <br/>
             <p:commandButton value="Add Service" id="addService"  actionListener="#{websiteBean.addService(websiteBean.website.id)}" styleClass="ui-priority-primary" />
-
+            <br/>
+            <br/>
         </h:form>
     </f:view>
 </h:body>

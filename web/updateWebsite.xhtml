@@ -40,6 +40,7 @@
         <p:fileUpload value="#{updateWebsiteBean.logo}" mode="simple" skinSimple="true"/>
         <br/>
         <p:commandButton value="Submit" ajax="false" actionListener="#{updateWebsiteBean.saveData}" />
+        <p:commandButton value="Cancel" ajax="false" actionListener="#{updateWebsiteBean.cancel}" />
     </h:form>
 </h:body>
 </html>

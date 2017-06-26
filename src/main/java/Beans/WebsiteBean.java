@@ -109,6 +109,16 @@ public class WebsiteBean {
             Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void edit(int id){
+        String url = "updateWebsite.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void addService(int id){
         String url = "addService.xhtml?id="+id ;
         FacesContext fc = FacesContext.getCurrentInstance();
