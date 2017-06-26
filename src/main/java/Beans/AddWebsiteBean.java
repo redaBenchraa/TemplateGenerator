@@ -7,6 +7,7 @@ import models.User;
 import models.Website;
 import org.primefaces.model.UploadedFile;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import java.io.File;
@@ -16,6 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -89,6 +92,14 @@ public class AddWebsiteBean {
                 website.setUser(user);
                 websiteDAO webDAO = new websiteDAO();
                 webDAO.addwebsite(website);
+                String url = "websites.xhtml" ;
+                FacesContext fc = FacesContext.getCurrentInstance();
+                ExternalContext ec = fc.getExternalContext();
+                try {
+                    ec.redirect(url);
+                } catch (IOException ex) {
+                    Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }else{
             System.out.println("no user logged in");}
