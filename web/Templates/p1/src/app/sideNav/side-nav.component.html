@@ -1,0 +1,24 @@
+<about-me *ngIf="!showAboutMe"></about-me>
+<div class="sideNav">
+    <div class="sideNavOptions">
+        <div class="sideNavBox">
+            <div class="sideHover"></div>
+            <div class="sideGray" [routerLink]="['Blog']"><p class="navText">Blog</p></div>
+            <div class="sideRed"></div>
+        </div>
+        <div class="sideNavBox">
+            <div class="sideHover"></div>
+
+            <div class="sideGray" [routerLink]="['Work']"><p class="navText">Work</p></div>
+
+            <div class="sideRed"></div>
+        </div>
+        <div class="sideNavBox">
+            <div class="sideHover"></div>
+
+            <div class="sideGray" [routerLink]="['Life']"><p class="navText">Life</p></div>
+
+            <div class="sideRed"></div>
+        </div>
+    </div>
+</div>

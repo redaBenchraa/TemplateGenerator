@@ -1,0 +1,307 @@
+$sideNavHeight: 40px;
+$sideNavWidth: 15vw;
+$easer: cubic-bezier(.69,.19,.99,.54);
+
+@mixin sideNav {
+  width: $sideNavWidth;
+  transition: width .25s $easer;
+}
+
+.sideNav {
+  position: fixed;
+  z-index: 602;
+  left: 0;
+  height: 100vh;
+  font-family: 'Source Sans Pro', sans-serif;
+
+
+  & div {
+    height: $sideNavHeight;
+    margin-bottom: 10px;
+  }
+}
+
+.sideNavOptions {
+
+  //position: absolute;
+  //top: 40%;
+
+}
+.sideNavBox {
+  display: flex;
+  position: relative;
+}
+
+.sideHover {
+  position: absolute;
+  @include sideNav;
+  background-color: transparent;
+  cursor: pointer;
+
+
+  &:hover {
+
+    & ~ .sideRed:before {
+      transform: scaleY(1);
+
+    }
+
+    & ~ .sideGray {
+      left: 0;
+      @include sideNav;
+      min-width: 0;
+      transition: all .25s linear .5s;
+
+      & .navText{
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s, opacity 0.5s linear .5s;
+      }
+    }
+  }
+}
+
+.sideGray {
+  position: relative;
+  background-color: color(red);
+  width: 0;
+  left: 0;
+  height: $sideNavHeight;
+  transition: all .25s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    @include sideNav;
+
+    & .navText{
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.5s linear .5s;
+    }
+
+
+    & ~ .sideRed:before {
+      transform: scaleY(1);
+    }
+
+  }
+}
+
+.navText {
+  color: color(gray);
+  //color: color(sub-text);
+  visibility: hidden;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.sideRed {
+  position: relative;
+  width: 10px;
+  background-color: color(red-op);
+  transition: background-color .5s $easer;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: color(red);
+    transform: scaleY(0);
+    transition: transform .5s;
+  }
+}
+
+.aboutMeContainer {
+  position: fixed;
+  z-index: 625;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  @include font-range(20, 25);
+}
+
+.aboutMe {
+  position: relative;
+  &__box {
+    margin-top: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    height: 1.5rem;
+    color: color(sub-text);
+    &__left {
+      border: solid 1px color(red);
+      //position: absolute;
+      height: 100%;
+      min-width: 10%;
+      border-right: none;
+    }
+    &__right{
+      border: solid 1px color(red);
+      border-left: none;
+      //position: absolute;
+      height: 100%;
+      min-width: 10%;
+    }
+  }
+  &__link {
+    @include font-range(25, 30);
+    font-weight: 300;
+    cursor: pointer;
+    padding: 0 2px;
+  }
+}
+
+
+.aboutMeCover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0;
+  display: flex;
+  z-index: 600;
+
+  &.showCover {
+    z-index: 650;
+  }
+}
+
+.aboutSide {
+  width: 50vw;
+  height: 100vh;
+  transition: all .5s linear;
+  overflow: hidden;
+
+  &.showCover {
+    &.aboutLeft {
+      transform: translateX(0%);
+
+    }
+    &.aboutRight {
+      transform: translateX(0%);
+    }
+  }
+}
+.aboutLeft {
+  transform: translateX(-100%);
+  background: white;
+}
+
+.aboutRight {
+  transform: translateX(100%);
+  background: color(red);
+}
+
+.closeIcon {
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  & > img {
+    padding-top: 1.5rem;
+    padding-left: 2rem;
+    height: 1.5rem;
+  }
+}
+
+.leftContent {
+  padding-left: 3rem;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  margin-top: 25%;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.profileImage {
+  & > img {
+    height: 150px;
+  }
+}
+
+.section {
+  margin-top: 2rem;
+  width: 80%;
+
+  p:not(:first-of-type) {
+    margin-top: .5rem;
+  }
+}
+
+.connect {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 100vh;
+  justify-content: center;
+
+  &__header {
+    color: color(off-white);
+  }
+  &__input {
+      margin-top: .5rem;
+
+    &--message {
+      & textarea {
+        min-height: 4rem;
+      }
+    }
+
+    &:nth-of-type(2){
+      margin-top: 0;
+    }
+    & input,  textarea {
+      width: 100%;
+      padding-left: .5rem;
+      background-color: color(red);
+      color: color(off-white);
+      height: 1.5rem;
+      border: solid 1px color(sub-text);
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  &__send {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    color: color(sub-text);
+    letter-spacing: 0px;
+    border: solid 1px color(sub-text);
+    height: 25px;
+    width:75px;
+    font-weight: 500;
+    background-color: color(red);
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__okay {
+    width: 80%;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+
+    & > img {
+      max-height: 33vh;
+      max-width: 100%;
+    }
+  }
+}

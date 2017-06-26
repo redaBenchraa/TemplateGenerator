@@ -1,22 +1,25 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by reda-benchraa on 21/06/17.
  */
 @Entity
-public class Link {
+public class Link implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
-    int id;
+    @Expose int id;
     @Column
-    String name;
+    @Expose String name;
     @Column
-    String image;
+    @Expose String image;
     @Column
-    String link;
+    @Expose String link;
     @ManyToOne(optional = false)
     @JoinColumn(name = "WEBSITE_ID")
     private Website website;

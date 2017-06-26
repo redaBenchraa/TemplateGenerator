@@ -1,0 +1,80 @@
+<div class="aboutMeContainer">
+    <div class="aboutMe">
+        <div class="aboutMe__box">
+            <div class="aboutMe__box__left"></div>
+                <div class="aboutMe__link" (click)="toggleCover()">About Me</div>
+            <div class="aboutMe__box__right"></div>
+        </div>
+    </div>
+</div>
+
+<div class="aboutMeCover" [ngClass]="{showCover: boolShowCover}">
+    <div class="aboutSide aboutLeft" [ngClass]="{showCover: boolShowCover}">
+        <div class="leftContent">
+
+            <div class="heading">
+                <div class="name">
+                    <div class="">Dustin Belliston</div>
+                    <p>Web Developer</p>
+                </div>
+                <div class="profileImage">
+                    <img src="/img/profile.png" alt="">
+                </div>
+            </div>
+
+            <div class="section">
+                <div>About Me</div>
+                <p>Books, Bikes and Bits. That's about it. I honestly
+                    dont know alot about bikes but I love riding them.
+                    I read a lot and I love tech.</p>
+            </div>
+
+            <div class="section">
+                <div>Skills</div>
+                <p>I have spent most of my time doing frontend development.
+                    Angular has been my focus the past year.
+                </p>
+                <p>I am comfortable on the backend too. Postgres, Firebase, Couchbase.
+                    Interested in devops as well.
+                </p>
+                <p>Other things tech: Networking, security, project
+                    management, and design.
+                </p>
+            </div>
+
+            <div class="section">
+                <p> Need more Specifics?</p>
+            </div>
+        </div>
+    </div>
+    <div class="aboutSide aboutRight" [ngClass]="{showCover: boolShowCover}">
+        <div class="closeIcon" (click)="toggleCover()">
+            <img src="/img/icon-cross.svg" alt="">
+        </div>
+        <div class="leftContent">
+            <div class="connect" *ngIf="!boolMessageSent">
+                <div class="connect__header">Connect</div>
+                <div class="connect__input">
+                    <input type="text" placeholder="Name" [(ngModel)]="name">
+                </div>
+                <div class="connect__input">
+                    <input type="text" placeholder="Email" [(ngModel)]="email">
+                </div>
+                <div class="connect__input connect__input--message">
+                    <textarea type="text" placeholder="Message" [(ngModel)]="message"></textarea>
+                </div>
+                <div class="connect__input">
+                    <button class="btn connect__send" (click)="sendMessage()">Send</button>
+                </div>
+            </div>
+
+            <div class="connect__okay" *ngIf="boolMessageSent">
+                <img src="img/okay.png" alt="">
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

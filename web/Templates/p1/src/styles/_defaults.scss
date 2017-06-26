@@ -1,0 +1,42 @@
+@import 'colors';
+
+@mixin font-range($min-size, $max-size, $min-width: 320, $max-width: 1440) {
+    font-size: calc(#{$min-size}px + (#{$max-size} - #{$min-size}) * (100vw - #{$min-width}px) / (#{$max-width} - #{$min-width}));
+
+    @media screen and (max-width: #{$min-width}px) {
+        font-size: #{$min-size}px;
+    }
+    @media screen and (min-width: #{$max-width}px) {
+        font-size: #{$max-size}px;
+    }
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  color: color(text);
+  background-color: color(primary);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  @include font-range (24, 30);
+}
+
+p {
+  color: color(sub-text);
+  margin: 0;
+  @include font-range (16, 18);
+}
+
+input {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: color(primary);
+  
+  &:visited {
+    color: color(primary);
+  }
+}

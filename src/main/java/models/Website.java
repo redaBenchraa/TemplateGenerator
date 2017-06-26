@@ -1,5 +1,7 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,17 +14,17 @@ public class Website {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
-    int id;
+    @Expose int id;
     @Column
-    String name;
+    @Expose String name;
     @Column
-    String about;
+    @Expose String about;
     @Column
-    String welcome;
+    @Expose String welcome;
     @Column
-    String background;
+    @Expose String background;
     @Column
-    String logo;
+    @Expose String logo;
 
     public Website(String name, String about, String welcome, String background, String logo, User user) {
         this.name = name;
@@ -37,11 +39,11 @@ public class Website {
     }
 
     @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
-    private Collection<Project> projects= new ArrayList<Project>();
+    @Expose private Collection<Project> projects= new ArrayList<Project>();
     @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
-    private Collection<Service> services= new ArrayList<Service>();
+    @Expose private Collection<Service> services= new ArrayList<Service>();
     @OneToMany(cascade= CascadeType.ALL, mappedBy="website")
-    private Collection<Link> links= new ArrayList<Link>();
+    @Expose private Collection<Link> links= new ArrayList<Link>();
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "USER_ID")

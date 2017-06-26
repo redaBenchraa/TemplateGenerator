@@ -1,0 +1,63 @@
+.hero {
+    /* hero: */
+    font-family: InaiMathi;
+    font-size: 124px;
+    color: #5A5C51;
+    letter-spacing: 5.94px;
+}
+
+h1 {
+    /* header1: */
+    font-family: InaiMathi;
+    font-size: 48px;
+    color: #BA9077;
+    letter-spacing: 2.29px;
+}
+
+h2 {
+    /* subheader: */
+    font-family: InaiMathi;
+    font-size: 24px;
+    color: #BCD5D1;
+    letter-spacing: 1.14px;
+}
+//p{
+//    /* Contrary to popular : */
+//    //font-family: InaiMathi;
+//    font-size: 14px;
+//    color: #22332C;
+//    letter-spacing: 0px;
+//    line-height: 20px;
+//}
+
+
+.btn {
+    font-family: InaiMathi;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    border:none;
+    height: 25px;
+    width:75px;
+    font-weight: 500;
+
+    &__primary {
+        background: #5A5C51;
+    }
+    &__second {
+        background: #BA9077;
+    }
+    &__red {
+        background: #823335;
+    }
+}
+
+
+
+.card {
+    flex: 1;
+    min-height: 160px;
+}
+
+
+

@@ -1,0 +1,241 @@
+@import '_defaults';
+@import '_symbols';
+@import '_colors';
+@import '_sidenav';
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  //background: rgba(34,50,43,0.63);
+}
+
+/*------
+ Nav pane
+-----------------------------------------*/
+$navHeight: 40px;
+// TODO Animation not working
+@-webkit-keyframes colorChange {
+   0%{color: #6FFF00}
+   20%{color: #FF00FF}
+   40%{color: #FFFF00}
+   60%{color:#993CF3}
+   80%{color: #FF4105}
+}
+
+.nav {
+  z-index: 500;
+  width: 90%;
+  height: $navHeight;
+  top: 25vh;
+  position: absolute;
+  //background: rgba(89,92,81,0.73);
+  background: color(nav-op);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  color: color(sub-text);
+
+
+  &--fixed {
+    position: fixed;
+    background: color(red);
+    top: 0;
+
+    .nav__menu, .nav__options  {
+      display: none;
+    }
+  }
+
+  &__menu, &__options {
+    display: none;
+  }
+
+
+
+  &__header {
+    font-size: 47px;
+    letter-spacing: 9px;
+
+    &__text{
+      position: absolute;
+      top: -30%;
+      cursor: pointer;
+
+      &:hover {
+        transition: all 2s;
+        animation: colorChange 1s ease infinite;
+      }
+    }
+  }
+
+  &__options {
+    display: none;
+  }
+
+  &__item {
+    margin-right: 20px;
+    margin-top: 7%;
+    font-size: 16px;
+    letter-spacing: 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    min-width: 36px;
+    cursor: pointer;
+    position: relative;
+
+    &:after {
+      content:"";
+      transition: all .5s;
+      border-bottom: solid 1px #B03C3D;
+      width: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+
+    &:hover {
+      &:after{
+        width: 100%;
+      }
+    }
+  }
+}
+
+/*------
+ Page Content
+-----------------------------------------*/
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.pageContent {
+  position: absolute;
+  left: 0;
+  top: calc(25vh + 40px);
+  background-color: color(off-white);
+  width:100vw;
+}
+.pageIntro  {
+  min-height: calc(75vh - 40px);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pageHeader {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  color: color(text);
+  @include font-range(25, 30);
+}
+
+.pageArrow {
+  display: flex;
+  justify-content: center;
+}
+.arrow {
+  //cursor: pointer;
+  height:20px;
+}
+
+.clientCard {
+  min-height: 80vh;
+
+}
+
+.clientImageContainer {
+}
+
+.clientImage {
+  width:100vw;
+}
+
+
+.clientSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding: 0 1.5rem;
+}
+
+.clientHeader {
+  color: color(sub-text);
+}
+
+.clientLogo {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  flex-wrap: wrap;
+  cursor: pointer;
+
+  & > img {
+    margin-top: .5rem;
+    height: 30px;
+
+    &.tall {
+      height: 75px;
+    }
+
+  }
+}
+
+.clientExamples {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  & > img {
+    width: 50%;
+    max-height: 300px;
+    box-shadow: 9px 12px 38px -15px;
+    margin-top: .5rem;
+
+    & + div {
+      margin-top: 1.5rem;
+      padding: 0 1rem;
+    }
+  }
+}
+
+
+.techImage {
+  height: 40px;
+  padding: .5rem 1rem 0rem;
+
+
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > a {
+    font-family: inherit;
+  }
+}
+
+
+
+.blog {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+@import '_responsive';

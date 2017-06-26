@@ -1,0 +1,19 @@
+<div class="pageContainer">
+    <side-nav></side-nav>
+    <div class="landing">
+        <div class="overlay"></div>
+        <div class="nav">
+            <div class="nav__header">
+                <div class="nav__header__text" [routerLink]="['Home']">dwb</div>
+            </div>
+            <div class="nav__menu" (click)="toggleMenu = !toggleMenu">
+                <div><i class="fa fa-bars" aria-hidden="true"></i></div>
+            </div>
+            <div class="nav__options" [ngClass]="{showOptions: !toggleMenu}">
+                <div class="" [routerLink]="['Blog']"><p class="">Blog</p></div>
+                <div class="" [routerLink]="['Work']"><p class="">Work</p></div>
+                <div class="" [routerLink]="['Life']"><p class="">Life</p></div>
+            </div>
+        </div>
+    </div>
+</div>

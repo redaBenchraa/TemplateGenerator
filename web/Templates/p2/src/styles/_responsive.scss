@@ -1,0 +1,189 @@
+/* RESPONSIVENESS
+---------------------------------------- */
+
+/* Large Desktop (Above 1300px)
+----------------------------------------*/
+@media (min-width: 1300px) {
+
+}
+
+
+/* below 1300px
+----------------------------------------*/
+@media (max-width: 1299px) {
+
+}
+
+
+/* Anything smaller than large desktop
+----------------------------------------*/
+@media (max-width: 1199px) {
+
+}
+
+
+/* Tablet and Phone (anything smaller than 1024px)
+----------------------------------------*/
+@media (max-width: 1024px) {
+.sideRed {
+  width: 40px;
+}
+
+
+}
+
+
+/* Tablet and Phone (anything smaller than 1000px)
+----------------------------------------*/
+@media (max-width: 999px) {
+
+}
+
+
+/* Portrait tablet to landscape and desktop
+----------------------------------------*/
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+
+/* Landscape phone to portrait tablet
+----------------------------------------*/
+@media (max-width: 768px) {
+  .pageContainer{
+    flex-direction: column;
+  }
+
+  .aboutMeCover {
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
+    height: inherit;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: all .2s linear;
+
+    &.showCover {
+      height: inherit;
+      transform: translateY(0%);
+    }
+  }
+
+  .aboutMeContainer {
+    justify-content: flex-end;
+    padding-right: 1rem;
+  }
+  .aboutMe {
+    padding-right: 2rem;
+  }
+  .aboutMe__box__left, .aboutMe__box__right {
+    display: none;
+  }
+
+  .aboutSide {
+    position: relative;
+    width: 100vw;
+    height: inherit;
+    overflow: visible;
+
+    &.aboutLeft, &.aboutRight {
+      transform: translateX(0);
+    }
+  }
+
+  .leftContent {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  .heading {
+    margin-top: 0;
+  }
+  .section {
+    margin-top: 1rem;
+  }
+  .closeIcon {
+    justify-content: center;
+  }
+
+  .connect {
+    height: 100%;
+    margin-top: 3rem;
+
+    &__okay {
+      height: 100%;
+      margin-top: 5rem;
+      justify-content: center;
+    }
+  }
+
+  .sideNav {
+    display: none;
+  }
+
+  .profileImage > img {
+    height: 50px;
+  }
+
+  .clientTech {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .techImage {
+    height: 50px;
+  }
+
+  .clientExamples > img{
+    transform: none !important;
+    width: 90% !important;
+  }
+
+  .nav {
+
+    &__menu {
+      display: flex;
+      align-items: center;
+      padding-top: 2px;
+    }
+
+  &__options {
+    position: absolute;
+    transform: translateX(0%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    transition: transform .2s linear;
+    background: color(gray-op);
+    color: color(white);
+    font-weight: 500;
+
+    & > div {
+      width: 100%;
+      border-bottom: 2px solid color(red);
+      display: flex;
+      justify-content: center;
+
+      & p {
+        @include font-range(24, 28);
+      }
+    }
+
+      &.showOptions {
+        transform: translateX(-100%);
+      }
+
+    }
+  }
+}
+
+
+/* Landscape phones and down
+----------------------------------------*/
+@media (max-width: 400px) {
+
+}

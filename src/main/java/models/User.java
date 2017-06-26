@@ -1,6 +1,9 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -8,17 +11,17 @@ import java.util.Collection;
  * Created by reda-benchraa on 21/06/17.
  */
 @Entity
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
-    int id;
+    @Expose int id;
     @Column
-    String username;
+    @Expose String username;
     @Column
-    String password;
+    @Expose String password;
     @OneToMany(cascade= CascadeType.ALL, mappedBy="user")
-    private Collection<Website> websites= new ArrayList<Website>();
+    @Expose private Collection<Website> websites= new ArrayList<Website>();
 
     public int getId() {
         return id;

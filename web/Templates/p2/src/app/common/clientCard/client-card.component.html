@@ -1,0 +1,25 @@
+<div class="clientCard">
+    <!--<div class="clientImageContainer">-->
+        <!--<img class="clientImage" src="/img/clientImage.png" alt="">-->
+    <!--</div>-->
+    <div class="clientSection">
+        <!--<div class="clientHeader">client</div>-->
+        <div class="clientLogo">
+            <img *ngIf="client.image !== 'thisSite' " [ngClass]="{tall: client.tall}" src="/img/logo-{{client.image}}.png" alt="">
+            <div *ngIf="client.image === 'thisSite' ">This Site</div>
+        </div>
+    </div>
+    <div class="clientSection">
+        <!--<div class="clientHeader">tech</div>-->
+        <div class="clientTech">
+            <img *ngFor="let tech of client.tech" class="techImage" src="/img/tech-{{tech}}.png" alt="">
+        </div>
+    </div>
+    <div class="clientSection">
+        <!--<div class="clientHeader">examples</div>-->
+        <div class="clientExamples" *ngFor="let example of client.examples">
+            <img src="/img/{{example.img}}.png" alt="">
+            <div>{{example.desc}}</div>
+        </div>
+    </div>
+</div>

@@ -28,6 +28,7 @@
     <h:form>
         <p:dataScroller value="#{websitesBean.websites}" var="website" chunkSize="4">
             <p:growl id="growl" life="2000" />
+
             <f:facet name="header">
                 Scroll Down to Load More websites
             </f:facet>
@@ -46,6 +47,7 @@
                         <p:commandButton value="Delete" id="deleteWebsite" update="growl"    actionListener="#{websitesBean.delete(website.id)}" styleClass="ui-priority-primary" />
                         <p:commandButton value="view" id="viewWebsite"  actionListener="#{websitesBean.view(website.id)}" styleClass="ui-priority-primary" />
                         <p:commandButton value="generate" id="generateWebsite"  actionListener="#{websitesBean.generate(website.id)}" styleClass="ui-priority-primary" />
+
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>

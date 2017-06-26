@@ -22,7 +22,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/war/WEB-INF/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -38,7 +38,6 @@
     <orderEntry type="library" exported="" scope="PROVIDED" name="JBoss 10.0.10.Final" level="application_server_libraries" />
     <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
     <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.primefaces:primefaces:6.1" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-annotations:3.3.0.ga" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate:3.2.4.sp1" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache:1.2.3" level="project" />
@@ -87,5 +86,7 @@
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:6.1" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.6.2" level="project" />
+    <orderEntry type="library" name="Maven: org.zeroturnaround:zt-zip:1.11" level="project" />
   </component>
 </module>

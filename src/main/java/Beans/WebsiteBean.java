@@ -4,21 +4,17 @@ import DAO.ServiceDAO;
 import DAO.linkDAO;
 import DAO.projectDAO;
 import DAO.websiteDAO;
-import models.Link;
-import models.Project;
-import models.Service;
 import models.Website;
 import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +22,7 @@ import java.util.logging.Logger;
  * Created by reda-benchraa on 25/06/17.
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class WebsiteBean {
     private Website website;
     String value;

@@ -1,0 +1,47 @@
+$primary:              #22332C;
+$secondary:            #5A5C51;
+$trinary:              #BA9077;
+$accent:               #BCD5D1;
+
+$text:                 #22332C;
+$sub-text:             #9E9E9E;
+$dim-text:             rgba(154,154,155,0.48);
+$off-white:            whitesmoke;
+
+$red:                  #823335;
+$red-op:               rgba(130,51,53,0.45);
+$red-op2:               rgba(130,51,53,0.9);
+
+$gray-op:              rgba(155,154,155,0.50);
+$gray:              rgba(155,154,155, 1);
+
+
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  trinary: $trinary,
+  accent: $accent,
+
+  text: $text,
+  sub-text: $sub-text,
+  dim-text: $dim-text,
+  off-white: $off-white,
+
+  red: $red,
+  red-op: $red-op,
+  red-op2: $red-op2,
+  gray-op: $gray-op,
+  gray: $gray,
+  nav-op: $red-op,
+);
+
+@function color($color) {
+    @return map-get($colors, $color);
+}
+
+@each $name, $color in $colors {
+    .#{$name} {
+        color: $color !important;
+        border-color: $color !important;
+    }
+}
