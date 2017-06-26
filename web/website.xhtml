@@ -100,7 +100,7 @@
 
                 <p:panel header="#{service.name}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
-                        <p:graphicImage value="#{link.image}" width="100px"/>
+                        <p:graphicImage value="#{service.image}" width="100px"/>
                         <h:outputText value="#{service.about}" />
                         <p:commandButton value="Delete" id="deleteService"  actionListener="#{websiteBean.deleteService(service.id)}" styleClass="ui-priority-primary" />
                         <p:commandButton value="Edit" id="editService"  actionListener="#{websiteBean.editService(service.id)}" styleClass="ui-priority-primary" />
