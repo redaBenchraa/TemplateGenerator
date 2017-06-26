@@ -1,5 +1,6 @@
 package Beans;
 
+import DAO.Utiz;
 import DAO.userDAO;
 import DAO.websiteDAO;
 import com.sun.faces.facelets.util.Path;
@@ -10,13 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,19 +71,16 @@ public class AddWebsiteBean {
     public void saveData(){
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         if(servletContext.getAttribute("idUser")!=null){
-            String userId = (String) servletContext.getAttribute("idUser");
+            String userId = servletContext.getAttribute("idUser").toString();
             User user  = new userDAO().getUser(Integer.parseInt(userId));
             Website website = new Website();
-            File uploads = new File(path);
-            if(!uploads.exists()) {
-                boolean successful = new File(path).mkdir();
-            }
+            Utiz.checkUploadFolder();
             if(background !=null && logo!=null){
                 website.setName(getName());
                 website.setWelcome(getWelcome());
                 website.setAbout(getAbout());
-                website.setBackground(uploadImage(getBackground()));
-                website.setLogo(uploadImage(getLogo()));
+                website.setBackground(Utiz.uploadImage(getBackground()));
+                website.setLogo(Utiz.uploadImage(getLogo()));
                 website.setUser(user);
                 websiteDAO webDAO = new websiteDAO();
                 webDAO.addwebsite(website);
@@ -104,17 +96,4 @@ public class AddWebsiteBean {
         }else{
             System.out.println("no user logged in");}
         }
-
-
-    private String uploadImage(UploadedFile file){
-        Random rand = new Random();
-        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
-        try{
-            InputStream Input = file.getInputstream();
-            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return path+"/"+fileName;
-    }
 }

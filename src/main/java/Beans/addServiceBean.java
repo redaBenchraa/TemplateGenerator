@@ -5,6 +5,7 @@ package Beans;
  */
 
 import DAO.ServiceDAO;
+import DAO.Utiz;
 import DAO.websiteDAO;
 import models.Service;
 import org.primefaces.model.UploadedFile;
@@ -69,8 +70,9 @@ public class addServiceBean {
         l.setWebsite(new websiteDAO().getWebsite(Integer.parseInt(value)));
         l.setName(getName());
         l.setAbout(getAbout());
+        Utiz.checkUploadFolder();
         if(image.getSize()!=0){
-            l.setImage(uploadImage(image));
+            l.setImage(Utiz.uploadImage(image));
             ServiceDAO lDAO = new ServiceDAO();
             lDAO.addService(l);
             String url = "website.xhtml?id="+value ;
@@ -87,17 +89,5 @@ public class addServiceBean {
             context.addMessage(null, new FacesMessage("Missing data",  "You must add image") );
         }
 
-    }
-
-    private String uploadImage(UploadedFile file){
-        Random rand = new Random();
-        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
-        try{
-            InputStream Input = file.getInputstream();
-            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return partPath+"/"+fileName;
     }
 }

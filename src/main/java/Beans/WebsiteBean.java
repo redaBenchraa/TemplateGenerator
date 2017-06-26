@@ -93,7 +93,7 @@ public class WebsiteBean {
         }
     }
     public void editlink(int id){
-        String url = "editLink.xhtml?id="+id ;
+        String url = "updateLink.xhtml?id="+id ;
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {
@@ -103,7 +103,7 @@ public class WebsiteBean {
         }
     }
     public void editService(int id){
-        String url = "editService.xhtml?id="+id ;
+        String url = "updateService.xhtml?id="+id ;
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {
@@ -113,7 +113,7 @@ public class WebsiteBean {
         }
     }
     public void editProject(int id){
-        String url = "editProject.xhtml?id="+id ;
+        String url = "updateProject.xhtml?id="+id ;
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {

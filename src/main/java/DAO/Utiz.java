@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.primefaces.model.UploadedFile;
 
 import javax.faces.context.FacesContext;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -50,5 +51,12 @@ public class Utiz {
             System.out.println(e);
         }
         return partPath+"/"+fileName;
+    }
+
+    public static void  checkUploadFolder(){
+        File uploads = new File(path);
+        if(!uploads.exists()) {
+            boolean successful = new File(path).mkdir();
+        }
     }
 }

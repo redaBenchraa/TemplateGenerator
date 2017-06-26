@@ -1,13 +1,9 @@
 package Beans;
 
-/**
- * Created by Rabab Chahboune on 6/25/2017.
- */
-
 import DAO.Utiz;
-import DAO.linkDAO;
+import DAO.projectDAO;
 import DAO.websiteDAO;
-import models.Link;
+import models.Project;
 import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
@@ -20,20 +16,24 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Created by Rabab Chahboune on 6/26/2017.
+ */
 @ManagedBean
 @ViewScoped
-public class AddLinkBean {
+public class UpdateProjectBean {
     String value ;
+    Project l;
     @PostConstruct
     void init(){
         value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        l = new projectDAO().getProject(Integer.parseInt(value));
+        setName(l.getName());
+        setAbout(l.getAbout());
     }
     private String name;
-    private String link;
+    private String about;
     private UploadedFile image;
-
-
-
 
     public String getName() {
         return name;
@@ -43,12 +43,12 @@ public class AddLinkBean {
         this.name = name;
     }
 
-    public String getLink() {
-        return link;
+    public String getAbout() {
+        return about;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setAbout(String project) {
+        this.about = project;
     }
 
     public UploadedFile getImage() {
@@ -60,31 +60,22 @@ public class AddLinkBean {
     }
 
     public void saveData(){
-        Link l = new Link();
-        l.setWebsite(new websiteDAO().getWebsite(Integer.parseInt(value)));
         l.setName(getName());
-        l.setLink(getLink());
+        l.setAbout(getAbout());
         Utiz.checkUploadFolder();
         if(image.getSize()!=0){
             l.setImage(Utiz.uploadImage(image));
-            linkDAO lDAO = new linkDAO();
-            lDAO.addlink(l);
-            String url = "website.xhtml?id="+value ;
-            FacesContext fc = FacesContext.getCurrentInstance();
-            ExternalContext ec = fc.getExternalContext();
-            try {
-                ec.redirect(url);
-            } catch (IOException ex) {
-                Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }else {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Missing data",  "You must add image") );
+        }
+        projectDAO lDAO = new projectDAO();
+        lDAO.updateProject(l);
+        String url = "website.xhtml?id="+l.getWebsite().getId() ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-
-
-
 }

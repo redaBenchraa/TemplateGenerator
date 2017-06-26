@@ -4,6 +4,7 @@ package Beans;
  * Created by Rabab Chahboune on 6/25/2017.
  */
 
+import DAO.Utiz;
 import DAO.projectDAO;
 import DAO.websiteDAO;
 import models.Project;
@@ -35,10 +36,6 @@ public class addProjectBean {
     private String name;
     private String about;
     private UploadedFile image;
-    private static String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/")+"/uploads";
-    private static String partPath = "uploads";
-
-
 
     public String getName() {
         return name;
@@ -69,8 +66,9 @@ public class addProjectBean {
         l.setWebsite(new websiteDAO().getWebsite(Integer.parseInt(value)));
         l.setName(getName());
         l.setAbout(getAbout());
+        Utiz.checkUploadFolder();
         if(image.getSize()!=0){
-            l.setImage(uploadImage(image));
+            l.setImage(Utiz.uploadImage(image));
             projectDAO lDAO = new projectDAO();
             lDAO.addproject(l);
             String url = "website.xhtml?id="+value ;
@@ -87,17 +85,5 @@ public class addProjectBean {
             context.addMessage(null, new FacesMessage("Missing data",  "You must add image") );
         }
 
-    }
-
-    private String uploadImage(UploadedFile file){
-        Random rand = new Random();
-        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
-        try{
-            InputStream Input = file.getInputstream();
-            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return partPath+"/"+fileName;
     }
 }
