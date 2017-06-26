@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type=""></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+            type=""></script>
+</h:head>
+<h:body>
+    <h:form enctype="multipart/form-data">
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <h3 class="first">Name</h3>
+        <p:inputTextarea rows="2" style="width:95%;" value="#{updateLinkBean.name}" required="true" />
+        <h3 class="first">Link</h3>
+        <p:inputTextarea rows="2" style="width:95%;" value="#{updateLinkBean.link}" required="true"/>
+        <h3>Choose link image</h3>
+        <p:growl id="messages" showDetail="true" />
+        <p:fileUpload value="#{updateLinkBean.image}" mode="simple" skinSimple="true" required="true"/>
+        <br/>
+        <p:commandButton value="Submit" ajax="false" actionListener="#{updateLinkBean.saveData}" required="true"/>
+    </h:form>
+</h:body>
+</html>

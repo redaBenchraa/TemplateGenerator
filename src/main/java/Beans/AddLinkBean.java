@@ -4,6 +4,7 @@ package Beans;
  * Created by Rabab Chahboune on 6/25/2017.
  */
 
+import DAO.Utiz;
 import DAO.linkDAO;
 import DAO.websiteDAO;
 import models.Link;
@@ -23,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ManagedBean
-public class addLinkBean {
+public class AddLinkBean {
 
     private String name;
     private String link;
@@ -63,7 +64,7 @@ public class addLinkBean {
         l.setName(getName());
         l.setLink(getLink());
         if(image.getSize()!=0){
-            l.setLink(uploadImage(image));
+            l.setLink(Utiz.uploadImage(image));
             linkDAO lDAO = new linkDAO();
             lDAO.addlink(l);
             String url = "website.xhtml?id="+value ;
@@ -82,15 +83,5 @@ public class addLinkBean {
 
     }
 
-    private String uploadImage(UploadedFile file){
-        Random rand = new Random();
-        String fileName = String.valueOf(rand.nextInt(10000))+file.getFileName();
-        try{
-            InputStream Input = file.getInputstream();
-            Files.copy(Input, Paths.get(path,fileName), StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return path+"/"+fileName;
-    }
+
 }
