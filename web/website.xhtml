@@ -51,8 +51,7 @@
 
                 <p:panel header="#{link.name}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
-                        <p:graphicImage name="demo/images/car/#{link.image}"/>
-
+                        <p:graphicImage value="#{link.image}"/>
                         <h:outputText value="#{link.link}" />
                         <p:commandButton value="Delete" id="deleteLink"  actionListener="#{websiteBean.deletelink(link.id)}" styleClass="ui-priority-primary" />
                         <p:commandButton value="Edit" id="editLink"  actionListener="#{websiteBean.editlink(link.id)}" styleClass="ui-priority-primary" />

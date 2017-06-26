@@ -70,7 +70,7 @@ public class addLinkBean {
         l.setName(getName());
         l.setLink(getLink());
         if(image.getSize()!=0){
-            l.setLink(uploadImage(image));
+            l.setImage(uploadImage(image));
             linkDAO lDAO = new linkDAO();
             lDAO.addlink(l);
             String url = "website.xhtml?id="+value ;
