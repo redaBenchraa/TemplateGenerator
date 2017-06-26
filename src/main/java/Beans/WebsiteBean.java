@@ -33,8 +33,7 @@ public class WebsiteBean {
     @PostConstruct
     public void init() {
         id =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-        website = new websiteDAO().getWebsite(Integer.parseInt("2"));
-        System.out.println("value = "+ id);
+        website = new websiteDAO().getWebsite(Integer.parseInt(id));
     }
     public void deletelink(int id){
         RequestContext context = RequestContext.getCurrentInstance();
@@ -101,6 +100,16 @@ public class WebsiteBean {
     }
     public void addlink(int id){
         String url = "addLink.xhtml?id="+id ;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        try {
+            ec.redirect(url);
+        } catch (IOException ex) {
+            Logger.getLogger(WebsitesBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void edit(int id){
+        String url = "updateWebsite.xhtml?id="+id ;
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
         try {
